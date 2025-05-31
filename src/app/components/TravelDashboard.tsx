@@ -1,12 +1,15 @@
+"use client"
+
 import { MapPin, Plus, Check, Heart, Plane, Camera } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
+import { useState } from "react"
 
 export default function Component() {
-  const destinations = [
+  const [destinations, setDestinations] = useState([
     {
       id: 1,
       title: "Santorini Sunset",
@@ -71,7 +74,7 @@ export default function Component() {
       note: "Camel rides and stargazing in the Sahara",
       visited: false,
     },
-  ]
+  ])
 
   const totalDestinations = destinations.length
   const visitedCount = destinations.filter((dest) => dest.visited).length
@@ -145,6 +148,13 @@ export default function Component() {
                 <div className="absolute top-3 left-3">
                   <Checkbox
                     checked={destination.visited}
+                    onCheckedChange={() => {
+                      setDestinations((prev) =>
+                        prev.map((d) =>
+                          d.id === destination.id ? { ...d, visited: !d.visited } : d
+                        )
+                      )
+                    }}
                     className="bg-white/90 border-2 border-white shadow-lg data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
                   />
                 </div>
