@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
+import Image from "next/image"
 
 export default function Component() {
   const destinations = [
@@ -88,7 +89,7 @@ export default function Component() {
           </div>
           <div className="space-y-2">
             <p className="text-xl text-gray-700 font-medium">
-              You've saved <span className="text-orange-600 font-bold">{totalDestinations}</span> dream destinations!
+              You&apos;ve saved <span className="text-orange-600 font-bold">{totalDestinations}</span> dream destinations!
             </p>
             <div className="flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
@@ -121,11 +122,12 @@ export default function Component() {
               key={destination.id}
               className="group overflow-hidden bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <div className="relative">
-                <img
-                  src={destination.image || "/placeholder.svg"}
+              <div className="relative w-full h-48">
+                <Image
+                  src={destination.image}
                   alt={destination.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-3 right-3">
                   {destination.visited ? (
@@ -166,7 +168,7 @@ export default function Component() {
         {/* Inspirational Footer */}
         <div className="text-center py-8 space-y-2">
           <p className="text-gray-600 italic text-lg">
-            "The world is a book, and those who do not travel read only one page."
+            &quot;The world is a book, and those who do not travel read only one page.&quot;
           </p>
           <p className="text-gray-500 text-sm">Start planning your next adventure together! ✈️</p>
         </div>
